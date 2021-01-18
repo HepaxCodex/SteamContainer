@@ -2,4 +2,5 @@
 
 
 ## Terraria
-[Server Install Instructions] https://terraria.gamepedia.com/Server[Foo]
+Server Install Instructions
+https://terraria.gamepedia.com/Server
