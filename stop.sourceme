@@ -1,0 +1,2 @@
+podman stop starbound-dedicated
+podman rm starbound-dedicated

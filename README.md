@@ -1,5 +1,9 @@
 # SteamContainer
 
+## Helpful Sites
+[List of Steam App IDs](https://developer.valvesoftware.com/wiki/Dedicated_Servers_List)
+
+
 ## Install Prerequisites
 
 ### Setup Basic System
@@ -30,20 +34,36 @@ Move Github public/private keys to ~/.ssh/
 
 
 ## SteamCMD Base
+
+Below is the setupfor a starbound based config.
+Change the poddata-<game> as needed for other games.
+
+See special notes for other games.
+
 ```bash
-podman pull steamcmd/steamcmd:latest
-mkdir -p poddata-starbound
-chmod 777 poddata-starbound
-podman run -d --net=host --name=starbound-dedicated -v /home/andrewk/Development/poddata-starbound:/home/steam/starbound-dedicated starbound-container
+mkdir -p <desired-path>/poddata-starbound
+chmod 777 <desired-path>/poddata-starbound
+podman run -d --net=host --name=starbound-dedicated -v <desired-path>/poddata-starbound:/home/steam/starbound-dedicated starbound-container
 ```
 
 * ```-d``` Tells podman to detach (run in background)
 * ```--net=host``` Tells pod to use the host computers network stack
 * ```--name=steam-starbound``` Tells pod to use the name "steam-starbound"
-* ```-v <host-path-to-storage>:<mount-point-in-container>
+* ```-v <host-path-to-storage>:<mount-point-in-container>``` Teslls the coontainer to use persistant storage
 
-## Terraria
-[Server Install Instructions](https://terraria.gamepedia.com/Server)
+To Build the container (first time only)
+```bash
+source build.sourceme
+
+To start the container
+```bash
+source start.sourceme
+```
+
+To Stop the container
+```bash
+source stop.sourceme
+```
 
 
 ## Starbound
@@ -62,7 +82,7 @@ container$ steamcmd.sh +force_install_dir ~/starbound-dedicated/ +app_update 211
 ```
 
 
-Notes as of Ubuntu 20.10:
+Notes if installing in an Ubuntu 20.10 Container / Host
 * lib32gcc1 is now lib32gcc-s1
 
 ```bash
@@ -71,5 +91,8 @@ sudo apt-get install lib32gcc-s1 libvorbisfile3
 ```
 
 ## Don't Starve Together
+NOT IMPLEMENTED YET
 
-
+## Terraria
+NOT IMPLEMENTED YET 
+[Server Install Instructions](https://terraria.gamepedia.com/Server)
