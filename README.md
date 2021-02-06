@@ -3,6 +3,7 @@
 ## Helpful Sites
 [List of Steam App IDs](https://developer.valvesoftware.com/wiki/Dedicated_Servers_List)
 
+[Steam CMD Setup Instructions](https://developer.valvesoftware.com/wiki/SteamCMD#Docker)
 
 ## Install Prerequisites
 
@@ -43,7 +44,7 @@ See special notes for other games.
 ```bash
 mkdir -p <desired-path>/poddata-starbound
 chmod 777 <desired-path>/poddata-starbound
-podman run -d --net=host --name=starbound-dedicated -v <desired-path>/poddata-starbound:/home/steam/starbound-dedicated starbound-container
+podman run -d --net=host --name=starbound-container1 -v <desired-path>/poddata-starbound:/home/steam/poddata starbound-container
 ```
 
 * ```-d``` Tells podman to detach (run in background)
@@ -73,13 +74,29 @@ source stop.sourceme
 * Install the Starbound Server to the persistent storage
 
 ```bash
-host$ podman run -it --net=host --name=starbound-dedicated -v /home/andrewk/Development/poddata-starbound:/home/steam/starbound-dedicated starbound-container
+host$ podman run -it --net=host --name=starbound-container1 -v /home/andrewk/Development/poddata-starbound:/home/steam/poddata starbound-container
 container$ cd steamcmd
 container$ ./steamcmd.sh 
 steam> login <username> <password>
 steam> quit
-container$ steamcmd.sh +force_install_dir ~/starbound-dedicated/ +app_update 211820 validate +quit
+container$ steamcmd.sh +force_install_dir ~/poddata/ +app_update 211820 validate +quit
+container$ exit
 ```
+
+* Set CMD = ["bash"]
+* Fire up the container so that you get a command prompt
+* cd steamcmd
+*./steamcmd.sh +login hepaxcodex +force_install_dir /home/steam/poddata +workshop_download_item 211820 729480149
+
+
+[Following Instructions from here](https://steamcommunity.com/sharedfiles/filedetails/?id=734496146&searchtext=Frackin+Universe)
+
+* Makr sure the contaner is off (source stop.sourceme)
+* Download the Frackin Universe Mod as a zip
+* https://github.com/sayterdarkwynd/FrackinUniverse/archive/master.zip
+* Extract it to poddata-starbound/mods
+* rename "FrackinUniverse" (remove the -master)
+* may need to chmod 777 mods first, then chmod 755 mods
 
 
 Notes if installing in an Ubuntu 20.10 Container / Host

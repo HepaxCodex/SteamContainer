@@ -1,2 +1,2 @@
-podman stop starbound-dedicated
-podman rm starbound-dedicated
+podman stop starbound-container1
+podman rm starbound-container1

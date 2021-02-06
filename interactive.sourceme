@@ -1,0 +1,1 @@
+podman run -it --net=host --name=starbound-container1 -v /home/andrewk/Development/poddata-starbound:/home/steam/poddata starbound-container

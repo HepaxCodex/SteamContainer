@@ -1,3 +1,1 @@
-podman run -it --net=host --name=starbound-dedicated -v /home/andrewk/Development/poddata-starbound:/home/steam/starbound-dedicated starbound-container
-#podman run -d --net=host --name=starbound-dedicated -v /home/andrewk/Development/poddata-starbound:/home/steam/starbound-dedicated starbound-container
-
+podman run -d --net=host --name=starbound-container1 -v /home/andrewk/Development/poddata-starbound:/home/steam/poddata starbound-container bash entry.sh
