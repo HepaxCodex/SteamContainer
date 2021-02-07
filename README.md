@@ -52,11 +52,11 @@ podman run -d --net=host --name=starbound-container1 -v <desired-path>/poddata-s
 * ```--name=steam-starbound``` Tells pod to use the name "steam-starbound"
 * ```-v <host-path-to-storage>:<mount-point-in-container>``` Teslls the coontainer to use persistant storage
 
-To Build the container (first time only)
+To Build the container (After updating the Dockerfile)
 ```bash
 source build.sourceme
 
-To start the container
+To start the container to run in the background
 ```bash
 source start.sourceme
 ```
@@ -66,47 +66,11 @@ To Stop the container
 source stop.sourceme
 ```
 
-
-## Starbound
-[Startboun Instructions for Ubuntu 16](https://starbounder.org/Guide:LinuxServerSetup)
-
-* Start The Container interactively
-* Install the Starbound Server to the persistent storage
-
+To Install (first time) or Run Updates
 ```bash
-host$ podman run -it --net=host --name=starbound-container1 -v /home/andrewk/Development/poddata-starbound:/home/steam/poddata starbound-container
-container$ cd steamcmd
-container$ ./steamcmd.sh 
-steam> login <username> <password>
-steam> quit
-container$ steamcmd.sh +force_install_dir ~/poddata/ +app_update 211820 validate +quit
-container$ exit
+source interactive.sourceme
+./install.sh # or ./update.sh
 ```
-
-* Set CMD = ["bash"]
-* Fire up the container so that you get a command prompt
-* cd steamcmd
-*./steamcmd.sh +login hepaxcodex +force_install_dir /home/steam/poddata +workshop_download_item 211820 729480149
-
-
-[Following Instructions from here](https://steamcommunity.com/sharedfiles/filedetails/?id=734496146&searchtext=Frackin+Universe)
-
-* Makr sure the contaner is off (source stop.sourceme)
-* Download the Frackin Universe Mod as a zip
-* https://github.com/sayterdarkwynd/FrackinUniverse/archive/master.zip
-* Extract it to poddata-starbound/mods
-* rename "FrackinUniverse" (remove the -master)
-* may need to chmod 777 mods first, then chmod 755 mods
-
-
-Notes if installing in an Ubuntu 20.10 Container / Host
-* lib32gcc1 is now lib32gcc-s1
-
-```bash
-sudo apt-get update && \
-sudo apt-get install lib32gcc-s1 libvorbisfile3 
-```
-
 ## Don't Starve Together
 NOT IMPLEMENTED YET
 
