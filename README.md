@@ -32,7 +32,7 @@ $ sudo apy install htop git vim openssh-server podman buildah runc
 ```
 
 Move Github public/private keys to ~/.ssh/
-
+And either notify that the key is there or makesure it is named id_ed
 
 ## SteamCMD Base
 
@@ -52,6 +52,7 @@ podman run -d --net=host --name=starbound-container1 -v <desired-path>/poddata-s
 * ```--name=steam-starbound``` Tells pod to use the name "steam-starbound"
 * ```-v <host-path-to-storage>:<mount-point-in-container>``` Teslls the coontainer to use persistant storage
 
+## Host Computer Commands
 To Build the container (After updating the Dockerfile)
 ```bash
 source build.sourceme
@@ -65,12 +66,29 @@ To Stop the container
 ```bash
 source stop.sourceme
 ```
-
 To Install (first time) or Run Updates
 ```bash
 source interactive.sourceme
 ./install.sh # or ./update.sh
 ```
+
+## Starbound
+
+This setup is required because startbound requires you to be logged into get the downloads.
+This requires entering a password which breaks non-interactive update## Starbound
+
+This setup is required because startbound requires you to be logged into get the downloads.
+This requires entering a password which breaks non-interactive updates.
+Additionally, Steams 2-factor auth sends an email key that must be entered.
+
+```bash
+source interactive.sourceme
+./install.sh # Will Require Password / Steam Key
+exit
+source stop.sourceme # Stop the Container and Cleanup
+source start.sourceme # Start the servevr non-interactive 
+```
+
 ## Don't Starve Together
 NOT IMPLEMENTED YET
 
