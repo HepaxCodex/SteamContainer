@@ -27,6 +27,7 @@ RUN set -x \
 		echo 'cd ..'; \
 		echo 'cd poddata/starbound/mods'; \ 
 		echo 'ln -sf ~/poddata/frackinuniverse/steamapps/workshop/content/211820/729480149/contents.pak fu.pak'; \
+		echo 'ln -sf ~/poddata/frackinuniverse/steamapps/workshop/content/211820/731220462/contents.pak enhancedStorage.pak'; \
 	} > "${HOMEDIR}/install.sh" \
 	&& chmod +x "${HOMEDIR}/install.sh" \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/install.sh"
@@ -36,6 +37,7 @@ RUN set -x \
 		echo 'cd steamcmd'; \
 		echo './steamcmd.sh +login '${STEAMUSER}' +force_install_dir ~/poddata/starbound +app_update 211820 validate +quit'; \
 		echo './steamcmd.sh +login '${STEAMUSER}' +force_install_dir ~/poddata/frackinuniverse +workshop_download_item 211820 729480149 +quit'; \
+		echo './steamcmd.sh +login '${STEAMUSER}' +force_install_dir ~/poddata/frackinuniverse +workshop_download_item 211820 731220462 +quit'; \
 	} > "${HOMEDIR}/update.sh" \
 	&& chmod +x "${HOMEDIR}/update.sh" \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/update.sh"
